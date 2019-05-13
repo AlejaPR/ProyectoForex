@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>INICIO</title>
+  <meta charset= "utf-8">
+  <meta name= "viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie-edge">
+  <link rel="stylesheet"type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet"type="text/css" href="css/menu.css">
+   <link href="css/business-casual.css" rel="stylesheet">
+   
+ 
+</head>
+
+<body>
+
+  <div id="wrapper" class="toggled"> 
+
+    <!-- Sidebar -->
+    <div style="background-color:#000F1B" id="sidebar-wrapper"> 
+      
+      <div class="list-group list-group-flush toggled" >
+        <div class="sidebar-heading text-light" style="background-color:#000F1B">MENU PRINCIPAL </div>
+        <a href="home.html" class="list-group-item list-group-item-action text-light" style="background-color:#000F1B" >Inicio</a>
+        <a href="miperfil.html" class="list-group-item list-group-item-action text-light" style="background-color:#000F1B" >Mi perfil</a>
+        <a href="operaciones.html" class="list-group-item list-group-item-action text-light" style="background-color:#000F1B">Mis operaciones</a>
+        <a href="historial.html" class="list-group-item list-group-item-action text-light" style="background-color:#000F1B" >Mi historial</a>
+        <a href="#" class="list-group-item list-group-item-action text-light" style="background-color:#000F1B" >Cerrar sesion</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+     <nav class="navbar navbar-expand "style="background-color:#000F1B">
+       <div>
+            <img src="imagenes/icono-menu2.png" alt="" id="menu-toggle"class="menu-bar"> 
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class=""><span class="sr-only">(current)</span> <img src="imagenes/logo3.png" class="w-50 float-right"></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+  </div>
+  <!-- /#wrapper -->
+
+  <div class="container">
+    <div class=" text-center bg-faded p-5">
+        <h2 class="section-heading mb-4">
+          <span class="section-heading-lower">MI PERFIL</span>
+        </h2> 
+
+               <div class="container">
+                 <div class="abs-center">
+                 
+                
+                    <form>
+                      <div class="form-group row">
+                          <label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
+                          <div class="col-sm-10">
+                          <input class="form-control" id="campoNombre" placeholder="Nombre" readonly>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="inputApellido" class="col-sm-2 col-form-label">Apellido</label>
+                          <div class="col-sm-10">
+                          <input class="form-control" id="campoApellido" type="text" placeholder="Apellido" readonly>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="inputCorreo" class="col-sm-2 col-form-label">Correo</label>
+                          <div class="col-sm-10">
+                          <input class="form-control" id="campoCorreo" type="text" placeholder="Correo" readonly>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="inputUsuario" class="col-sm-2 col-form-label">Usuario</label>
+                          <div class="col-sm-10">
+                          <input class="form-control" id="campoUsuario" type="text" placeholder="Usuario" readonly>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="inputClave" class="col-sm-2 col-form-label">Contraseña</label>
+                          <div class="col-sm-10">
+                          <input class="form-control" id="campoClave" type="text" placeholder="Contraseña" readonly>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="inputSaldo" class="col-lg-2 col-form-label ">Mi saldo total</label>
+                          <div class="col-sm-10">
+                          <input class="form-control" id="campoSaldo" type="text" placeholder="Saldo total" readonly>
+                          </div>
+                      </div>
+                      
+                  </form>
+      
+                </div>
+   
+              </div>
+            </div>
+                      
+                     
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+ 
+
+
+    <!-- /.container -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+
+<!-- Menu Toggle Script -->
+  
+  <script>
+   $("#menu-toggle").click(function(e) { 
+ 
+    e.preventDefault(); 
+ 
+    $("#wrapper").toggleClass("toggled"); 
+ 
+});
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>INICIO</title>
+  <meta charset= "utf-8">
+  <meta name= "viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie-edge">
+  <link rel="stylesheet"type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet"type="text/css" href="css/registro.css">
+   
+ 
+ </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand static-top"style="background-color:#000F1B">
+     
+        <a><img src="imagenes/logo3.png"class="w-50 float-right"></a>
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item" >
+                <a href="index.html"  class="btn btn-info">INICIO</a>
+          </ul>
+        </div>
+     </div>
+  </nav>
+
+  <div class="container-fluid">
+  <div class="row no-gutter">
+    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+    <div class="col-md-8 col-lg-6">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <h3 class="login-heading mb-4">REGISTRARSE</h3>
+              <form id="idformulario">
+                <div class="form-label-group">
+                  <input type="text" id="inputNombre" class="form-control" required autofocus>
+                  <label for="inputUser">Nombre</label>
+                </div>
+                <div class="form-label-group">
+                  <input type="text" id="inputApellido" class="form-control" required autofocus>
+                  <label for="inputUser">Apellido</label>
+                </div>
+                <div class="form-label-group">
+                  <input type="email" id="inputCorreo" class="form-control" required autofocus>
+                  <label for="inputUser">Correo</label>
+                </div>
+                <div class="form-label-group">
+                  <input type="text" id="inputUsuario" class="form-control" required autofocus>
+                  <label for="inputUser">Usuario</label>
+                </div>
+
+                <div class="form-label-group">
+                  <input type="password" id="inputClave" class="form-control" required>
+                  <label for="inputPassword">Contraseña</label>
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">REGISTRARSE</button>
+                <div class="text-center">
+                  <a class="small">¿Ya tienes cuenta con nosotros?</a>
+                  <a class="small" href="login.html">Acceder</a></div>
+                </div>
+                 
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- /.container -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $("#idformulario").submit(function(event){
+
+        $.ajax({
+          url:'http://localhost:8080/ProyectoFinal/api/usuario/',
+          dataType: 'json',
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({
+                idUsuario: 2,
+                nombre: $("#inputNombre").val(),
+                apellido: $("#inputApellido").val(),
+                correo: $("#inputCorreo").val(),
+                usuario: $("#inputUsuario").val(),
+                clave: $("#inputClave").val(),
+                token:0,
+                fechaToken:""
+          }),
+          success: function(data,textStatus,jQxhr){
+            //alert("Registro correcto");
+            location.href='registroexitoso.html';
+          },
+          error: function(jqXhr,textStatus,errorThrown){
+            alert(textStatus);
+          }
+         
+        });
+         event.preventDefault();
+      });
+    });
+  </script>
+
+</body>
+</html>

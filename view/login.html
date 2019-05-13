@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>INICIO</title>
+  <meta charset= "utf-8">
+  <meta name= "viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie-edge">
+  <link rel="stylesheet"type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet"type="text/css" href="css/registro.css">
+   
+ 
+ </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand static-top"style="background-color:#000F1B">
+     
+        <a><img src="imagenes/logo3.png"class="w-50 float-right"></a>
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item" >
+                <a href="index.html"  class="btn btn-info">INICIO</a>
+          </ul>
+        </div>
+     </div>
+  </nav>
+
+  <div class="container-fluid">
+  <div class="row no-gutter">
+    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+    <div class="col-md-8 col-lg-6">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <h3 class="login-heading mb-4">ACCEDER</h3>
+              <form id="idformulario">
+                <div class="form-label-group">
+                  <input type="text" id="inputUsuario" class="form-control" required>
+                  <label for="inputUser">Usuario</label>
+                </div>
+
+                <div class="form-label-group">
+                  <input type="password" id="inputClave" class="form-control" required>
+                  <label for="inputPassword">Contraseña</label>
+                </div>
+
+                <div class="custom-control custom-checkbox mb-3">
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Recuerdame</label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">ACCEDER</button>
+                <div class="text-center">
+                  <a class="small">¿No tienes cuenta con nosotros?</a>
+                  <a class="small" href="registro.html">Registrate</a></div>
+                </div>
+                 
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- /.container -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+   <script type="text/javascript">
+    $(document).ready(function(){
+      $("#idformulario").submit(function(event){
+
+        $.ajax({
+          url:'http://localhost:8080/ProyectoFinal/api/auto',
+          dataType: 'json',
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({
+                usuario: $("#inputUsuario").val(),
+                clave: $("#inputClave").val()
+          }),
+            success: function(data,textStatus,jQxhr){
+            alert("Datos correctos");
+            location.href='home.html';
+          },
+         error: function(jqXhr,textStatus,errorThrown){
+            alert(textStatus);
+          }
+        });
+         event.preventDefault();
+      });
+    });
+  </script>
+
+
+
+</body>
+</html>
