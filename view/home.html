@@ -47,25 +47,59 @@
       </nav>
   </div>
 
-  <section class="page-section clearfix">
-    <div class="container">
-      <div class="intro">
-        <div class="intro-text left-5 text-center bg-faded p-5 rounded">
-          <h2 class="section-heading mb-4">
-            <span class="section-heading-lower">OPERACION</span>
-          </h2>
-         <P></P>
-         <form id="idBoton">
-           <button type="submit" class="btn btn-info">OPERACION</button>
-         </form>
-        
+  <div class="container">
+    <div class=" text-center bg-faded p-3">
+        <h2>
+          <span class="section-heading-lower">COTIZACIONES</span>
+        </h2> 
+                    <form id="formDivisa1">
+                      <div class="jumbotron">
+                      <div class="form-group row">
+                          <label for="inputApellido" class="col-sm-2 col-form-label">DIVISA</label>
+                          <div class="col-sm-10">
+                          <input class="form-control" id="campoDivisa1" type="text" placeholder="nombre divisa 1" readonly>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="inputApellido" class="col-sm-2 col-form-label">VALOR</label>
+                          <div class="col-sm-10">
+                          <input class="form-control" id="campoValor1" type="text" placeholder="VALOR" readonly>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-sm-12">
+                          <a href="comprar.html"  class="btn btn-success">COMPRAR</a>
+                          <a href="vender.html"  class="btn btn-danger">VENDER</a>
+                          </div>
+                      </div>   
+                      
+                    </form>
+
+                       <form id="formDivisa2">
+                          <div class="form-group row">
+                              <label for="inputApellido" class="col-sm-2 col-form-label">DIVISA</label>
+                              <div class="col-sm-10">
+                              <input class="form-control" id="campoDivisa2" type="text" placeholder="NOMBRE DIVISA2" readonly>
+                              </div>
+                          </div>
+                          <div class="form-group row">
+                              <label for="inputApellido" class="col-sm-2 col-form-label">VALOR</label>
+                              <div class="col-sm-10">
+                              <input class="form-control" id="campoValor2" type="text" placeholder="VALOR" readonly>
+                              </div>
+                          </div>
+                              <a href="comprar.html"  class="btn btn-success">COMPRAR</a>
+                              <a href="vender.html"  class="btn btn-danger">VENDER</a>       
+                       </form>
+      
+                </div>   
         </div>
       </div>
     </div>
-  </section>
-  <!-- /#wrapper -->
-
+  </div>
+  </div>
  
+
 
 		<!-- /.container -->
 		<script src="js/jquery-3.3.1.min.js"></script>
@@ -85,37 +119,5 @@
  
 });
   </script>
-
-   <script type="text/javascript">
-    $(document).ready(function(){
-      $("#idBoton").submit(function(event){
-
-        $.ajax({
-          url:'http://localhost:8080/ProyectoFinal/api/usuario/ver',
-          headers:{
-            'TokenAuto':"b4m-7dIzwsivIc2WDYbGMMNknUB6b6mPDuaBuf6t8i6lOWKq49mCCeefVSVrXH8QLUYpvcAK7l4B7IkOd_RXuw"
-          },
-          dataType: 'json',
-          type: 'GET',
-          contentType: 'application/json',
-         /* data: JSON.stringify({
-                usuario: $("#inputUsuario").val(),
-                clave: $("#inputClave").val()
-          }),*/
-            success: function(data,textStatus,jQxhr){
-            alert("La operacion es correcta"+
-              "    Usuario: "+data[0].usuario+" Contraseña:"+data[0].clave);
-            
-          },
-         error: function(jqXhr,textStatus,errorThrown){
-            alert(textStatus+" "+errorThrown);
-          }
-        });
-         event.preventDefault();
-      });
-    });
-  </script>
-
-
 </body>
 </html>
