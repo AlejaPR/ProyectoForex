@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
@@ -24,34 +25,29 @@ import javax.transaction.UserTransaction;
  */
 public class UsuarioJpaController implements Serializable {
 
-    public UsuarioJpaController(UserTransaction utx, EntityManagerFactory emf) {
+    public UsuarioJpaController() {
         this.utx = utx;
-        this.emf = emf;
+        this.emf = Persistence.createEntityManagerFactory("com.mycompany_ProyectoForex-ejb_ejb_1.0-SNAPSHOTPU").createEntityManager();
     }
     private UserTransaction utx = null;
-    private EntityManagerFactory emf = null;
+    private EntityManager emf = null;
 
     public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+        return emf;
     }
 
     public void create(Usuario usuario) throws RollbackFailureException, Exception {
-        EntityManager em = null;
+       
         try {
-            utx.begin();
-            em = getEntityManager();
-            em.persist(usuario);
-            utx.commit();
+             emf.getTransaction().begin();
+            emf.persist(usuario);
+            emf.getTransaction().commit();
         } catch (Exception ex) {
-            try {
-                utx.rollback();
-            } catch (Exception re) {
-                throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
+           
             throw ex;
         } finally {
-            if (em != null) {
-                em.close();
+            if (emf != null) {
+                emf.close();
             }
         }
     }

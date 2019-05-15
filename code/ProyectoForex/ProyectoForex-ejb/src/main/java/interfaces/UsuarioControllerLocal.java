@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import database.Usuario;
 import javax.ejb.Local;
 
 /**
@@ -12,6 +13,10 @@ import javax.ejb.Local;
  * @author aleja
  */
 @Local
-public interface UsuarioLocal {
+public interface UsuarioControllerLocal {
+    
+    public void registrarUsuario(Usuario usuario);
+    
+    public void login(String usuario, String clave);
     
 }

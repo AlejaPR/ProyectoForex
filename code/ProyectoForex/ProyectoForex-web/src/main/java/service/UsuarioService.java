@@ -4,10 +4,9 @@
  * and open the template in the editor.
  */
 package service;
-
-
-
-
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+import database.Usuario;
+import interfaces.UsuarioControllerLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
@@ -27,34 +26,21 @@ import javax.ws.rs.core.Response;
 @Path("usuario")
 public class UsuarioService {
     
-//      @EJB 
-//      PruebaLocal beanPrueba;
-//    
-    @GET
+      @EJB 
+      UsuarioControllerLocal beanPrueba;
+    
+    @POST
+    @Path("/registro")
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/ver")
-    public Response verUsuarios(){
-//             int suma = beanPrueba.sumar(2, 3);
-//             System.out.println(suma);
-        
-//             beanPrueba.guardar();
-//             System.out.println("Agregado");
-             
-//             beanPrueba.editar();
-//             System.out.println("Editado");
-//             
-//             beanPrueba.editarEspecifico();
-//             System.out.println("Editado");
-//             
-//             beanPrueba.eliminar();
-//             System.out.println("Eliminar");
-             
-//             beanPrueba.buscar();
-//             System.out.println(".");
-            return Response.status(Response.Status.OK).build();
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response agregar(Usuario usuarios){
+         
+             beanPrueba.registrarUsuario(usuarios);
+             System.out.println("Agregado");
+            return Response.status(Response.Status.OK).entity(usuarios).build();
     }
     
-    
+   
    
     
 }
