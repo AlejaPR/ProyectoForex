@@ -18,6 +18,8 @@ import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 /**
  *
@@ -42,7 +44,12 @@ public class UsuarioJpaController implements Serializable {
              emf.getTransaction().begin();
             emf.persist(usuario);
             emf.getTransaction().commit();
-        } catch (Exception ex) {
+        } catch (ConstraintViolationException e) {
+        // Aqui tira los errores de constraint
+        for (ConstraintViolation actual : e.getConstraintViolations()) {
+            System.out.println(actual.toString());
+        }
+    }catch (Exception ex) {
            
             throw ex;
         } finally {
@@ -53,29 +60,17 @@ public class UsuarioJpaController implements Serializable {
     }
 
     public void edit(Usuario usuario) throws NonexistentEntityException, RollbackFailureException, Exception {
-        EntityManager em = null;
+        
         try {
-            utx.begin();
-            em = getEntityManager();
-            usuario = em.merge(usuario);
-            utx.commit();
+            emf.getTransaction().begin();
+            emf.merge(usuario);
+            emf.getTransaction().commit();
         } catch (Exception ex) {
-            try {
-                utx.rollback();
-            } catch (Exception re) {
-                throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
-            String msg = ex.getLocalizedMessage();
-            if (msg == null || msg.length() == 0) {
-                Integer id = usuario.getIdUsuario();
-                if (findUsuario(id) == null) {
-                    throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.");
-                }
-            }
+            
             throw ex;
         } finally {
-            if (em != null) {
-                em.close();
+            if (emf != null) {
+                emf.close();
             }
         }
     }

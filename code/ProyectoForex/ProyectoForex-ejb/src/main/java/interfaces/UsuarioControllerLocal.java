@@ -17,6 +17,6 @@ public interface UsuarioControllerLocal {
     
     public void registrarUsuario(Usuario usuario);
     
-    public void login(String usuario, String clave);
+    public void loginUsuario(String usuario, String clave);
     
 }

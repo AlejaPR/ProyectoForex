@@ -70,7 +70,7 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 65535)
+    
     @Column(name = "tokenInicio")
     private String tokenInicio;
     @Basic(optional = false)
@@ -80,7 +80,7 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 65535)
+    
     @Column(name = "tokenRegistro")
     private String tokenRegistro;
 

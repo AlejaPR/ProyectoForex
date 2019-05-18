@@ -76,16 +76,18 @@
       $("#idformulario").submit(function(event){
 
         $.ajax({
-          url:'http://localhost:8080/ProyectoForex-web/api/usuario/registro',
+          //url:'http://localhost:8080/ProyectoTC-web/api/usuario',
+          url:'http://localhost:8080/ProyectoForex-web/api/usuario',
           dataType: 'json',
           type: 'POST',
           contentType: 'application/json',
           data: JSON.stringify({
+            idUsuario:8,
                 nombreUsuario: $("#inputNombre").val(),
                 correo: $("#inputCorreo").val(),
                 usuario: $("#inputUsuario").val(),
                 clave: $("#inputClave").val(),
-                saldo:0.1,
+                saldo:0,
                 tokenInicio:"",
                 validarUsuario:false,
                 tokenRegistro:""
