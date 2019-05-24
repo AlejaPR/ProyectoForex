@@ -12,11 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -29,76 +27,54 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Operacion.findAll", query = "SELECT o FROM Operacion o"),
-    @NamedQuery(name = "Operacion.findByIdOperacion", query = "SELECT o FROM Operacion o WHERE o.idOperacion = :idOperacion"),
-    @NamedQuery(name = "Operacion.findByNumElegido", query = "SELECT o FROM Operacion o WHERE o.numElegido = :numElegido"),
-    @NamedQuery(name = "Operacion.findByNumActual", query = "SELECT o FROM Operacion o WHERE o.numActual = :numActual"),
+    @NamedQuery(name = "Operacion.findByIdoperacion", query = "SELECT o FROM Operacion o WHERE o.idoperacion = :idoperacion"),
+    @NamedQuery(name = "Operacion.findByDivisa", query = "SELECT o FROM Operacion o WHERE o.divisa = :divisa"),
+    @NamedQuery(name = "Operacion.findByOperacion", query = "SELECT o FROM Operacion o WHERE o.operacion = :operacion"),
+    @NamedQuery(name = "Operacion.findByNumelegido", query = "SELECT o FROM Operacion o WHERE o.numelegido = :numelegido"),
+    @NamedQuery(name = "Operacion.findByNumactual", query = "SELECT o FROM Operacion o WHERE o.numactual = :numactual"),
     @NamedQuery(name = "Operacion.findByLote", query = "SELECT o FROM Operacion o WHERE o.lote = :lote"),
-    @NamedQuery(name = "Operacion.findBySaldoOperacion", query = "SELECT o FROM Operacion o WHERE o.saldoOperacion = :saldoOperacion"),
-    @NamedQuery(name = "Operacion.findByValidarOpe", query = "SELECT o FROM Operacion o WHERE o.validarOpe = :validarOpe")})
+    @NamedQuery(name = "Operacion.findBySaldoperacion", query = "SELECT o FROM Operacion o WHERE o.saldoperacion = :saldoperacion"),
+    @NamedQuery(name = "Operacion.findByIdusuario", query = "SELECT o FROM Operacion o WHERE o.idusuario = :idusuario"),
+    @NamedQuery(name = "Operacion.findByValidaroperacion", query = "SELECT o FROM Operacion o WHERE o.validaroperacion = :validaroperacion")})
 public class Operacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idOperacion")
-    private Integer idOperacion;
-    @Basic(optional = false)
-    @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
+    @Column(name = "idoperacion")
+    private Integer idoperacion;
+    @Size(max = 2147483647)
     @Column(name = "divisa")
     private String divisa;
-    @Basic(optional = false)
-    @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
+    @Size(max = 2147483647)
     @Column(name = "operacion")
     private String operacion;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "numElegido")
-    private int numElegido;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "numActual")
-    private int numActual;
-    @Basic(optional = false)
-    @NotNull
+    @Column(name = "numelegido")
+    private Integer numelegido;
+    @Column(name = "numactual")
+    private Integer numactual;
     @Column(name = "lote")
-    private float lote;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "saldoOperacion")
-    private float saldoOperacion;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "validarOpe")
-    private boolean validarOpe;
+    private Integer lote;
+    @Column(name = "saldoperacion")
+    private Integer saldoperacion;
+    @Column(name = "idusuario")
+    private Integer idusuario;
+    @Column(name = "validaroperacion")
+    private Boolean validaroperacion;
 
     public Operacion() {
     }
 
-    public Operacion(Integer idOperacion) {
-        this.idOperacion = idOperacion;
+    public Operacion(Integer idoperacion) {
+        this.idoperacion = idoperacion;
     }
 
-    public Operacion(Integer idOperacion, String divisa, String operacion, int numElegido, int numActual, float lote, float saldoOperacion, boolean validarOpe) {
-        this.idOperacion = idOperacion;
-        this.divisa = divisa;
-        this.operacion = operacion;
-        this.numElegido = numElegido;
-        this.numActual = numActual;
-        this.lote = lote;
-        this.saldoOperacion = saldoOperacion;
-        this.validarOpe = validarOpe;
+    public Integer getIdoperacion() {
+        return idoperacion;
     }
 
-    public Integer getIdOperacion() {
-        return idOperacion;
-    }
-
-    public void setIdOperacion(Integer idOperacion) {
-        this.idOperacion = idOperacion;
+    public void setIdoperacion(Integer idoperacion) {
+        this.idoperacion = idoperacion;
     }
 
     public String getDivisa() {
@@ -117,50 +93,58 @@ public class Operacion implements Serializable {
         this.operacion = operacion;
     }
 
-    public int getNumElegido() {
-        return numElegido;
+    public Integer getNumelegido() {
+        return numelegido;
     }
 
-    public void setNumElegido(int numElegido) {
-        this.numElegido = numElegido;
+    public void setNumelegido(Integer numelegido) {
+        this.numelegido = numelegido;
     }
 
-    public int getNumActual() {
-        return numActual;
+    public Integer getNumactual() {
+        return numactual;
     }
 
-    public void setNumActual(int numActual) {
-        this.numActual = numActual;
+    public void setNumactual(Integer numactual) {
+        this.numactual = numactual;
     }
 
-    public float getLote() {
+    public Integer getLote() {
         return lote;
     }
 
-    public void setLote(float lote) {
+    public void setLote(Integer lote) {
         this.lote = lote;
     }
 
-    public float getSaldoOperacion() {
-        return saldoOperacion;
+    public Integer getSaldoperacion() {
+        return saldoperacion;
     }
 
-    public void setSaldoOperacion(float saldoOperacion) {
-        this.saldoOperacion = saldoOperacion;
+    public void setSaldoperacion(Integer saldoperacion) {
+        this.saldoperacion = saldoperacion;
     }
 
-    public boolean getValidarOpe() {
-        return validarOpe;
+    public Integer getIdusuario() {
+        return idusuario;
     }
 
-    public void setValidarOpe(boolean validarOpe) {
-        this.validarOpe = validarOpe;
+    public void setIdusuario(Integer idusuario) {
+        this.idusuario = idusuario;
+    }
+
+    public Boolean getValidaroperacion() {
+        return validaroperacion;
+    }
+
+    public void setValidaroperacion(Boolean validaroperacion) {
+        this.validaroperacion = validaroperacion;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idOperacion != null ? idOperacion.hashCode() : 0);
+        hash += (idoperacion != null ? idoperacion.hashCode() : 0);
         return hash;
     }
 
@@ -171,7 +155,7 @@ public class Operacion implements Serializable {
             return false;
         }
         Operacion other = (Operacion) object;
-        if ((this.idOperacion == null && other.idOperacion != null) || (this.idOperacion != null && !this.idOperacion.equals(other.idOperacion))) {
+        if ((this.idoperacion == null && other.idoperacion != null) || (this.idoperacion != null && !this.idoperacion.equals(other.idoperacion))) {
             return false;
         }
         return true;
@@ -179,7 +163,7 @@ public class Operacion implements Serializable {
 
     @Override
     public String toString() {
-        return "database.Operacion[ idOperacion=" + idOperacion + " ]";
+        return "database.Operacion[ idoperacion=" + idoperacion + " ]";
     }
     
 }

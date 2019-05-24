@@ -21,6 +21,6 @@ public class PruebasUsuario {
      @Test
       public void pruebaRegistro(){
       UsuarioController u=new UsuarioController();
-      u.registrarUsuario(new Usuario(123,"rodolfo", "dd", "cd", "f", 5, "f", true, ""));
-  }
+      u.registrarUsuario(new Usuario(1, "Adriana", "adri@gmail.com", "adri", "adri1", 1,"", false));
+     }
 }

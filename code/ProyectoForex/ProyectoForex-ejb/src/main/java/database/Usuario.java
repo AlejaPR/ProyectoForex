@@ -12,11 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -29,94 +27,71 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
-    @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
+    @NamedQuery(name = "Usuario.findByIdusuario", query = "SELECT u FROM Usuario u WHERE u.idusuario = :idusuario"),
+    @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
+    @NamedQuery(name = "Usuario.findByCorreo", query = "SELECT u FROM Usuario u WHERE u.correo = :correo"),
+    @NamedQuery(name = "Usuario.findByUsuario", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario"),
+    @NamedQuery(name = "Usuario.findByClave", query = "SELECT u FROM Usuario u WHERE u.clave = :clave"),
     @NamedQuery(name = "Usuario.findBySaldo", query = "SELECT u FROM Usuario u WHERE u.saldo = :saldo"),
-    @NamedQuery(name = "Usuario.findByValidarUsuario", query = "SELECT u FROM Usuario u WHERE u.validarUsuario = :validarUsuario")})
+    @NamedQuery(name = "Usuario.findByToken", query = "SELECT u FROM Usuario u WHERE u.token = :token"),
+    @NamedQuery(name = "Usuario.findByValidaru", query = "SELECT u FROM Usuario u WHERE u.validaru = :validaru")})
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idUsuario")
-    private Integer idUsuario;
-    @Basic(optional = false)
-    @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
-    @Column(name = "nombreUsuario")
-    private String nombreUsuario;
-    @Basic(optional = false)
-    @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
+    @Column(name = "idusuario")
+    private Integer idusuario;
+    @Size(max = 2147483647)
+    @Column(name = "nombre")
+    private String nombre;
+    @Size(max = 2147483647)
     @Column(name = "correo")
     private String correo;
-    @Basic(optional = false)
-    @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
+    @Size(max = 2147483647)
     @Column(name = "usuario")
     private String usuario;
-    @Basic(optional = false)
-    @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
+    @Size(max = 2147483647)
     @Column(name = "clave")
     private String clave;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "saldo")
-    private float saldo;
-    @Basic(optional = false)
-    @NotNull
-    @Lob
-    
-    @Column(name = "tokenInicio")
-    private String tokenInicio;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "validarUsuario")
-    private boolean validarUsuario;
-    @Basic(optional = false)
-    @NotNull
-    @Lob
-    
-    @Column(name = "tokenRegistro")
-    private String tokenRegistro;
+    private Integer saldo;
+    @Size(max = 2147483647)
+    @Column(name = "token")
+    private String token;
+    @Column(name = "validaru")
+    private Boolean validaru;
 
     public Usuario() {
     }
 
-    public Usuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public Usuario(Integer idUsuario, String nombreUsuario, String correo, String usuario, String clave, float saldo, String tokenInicio, boolean validarUsuario, String tokenRegistro) {
-        this.idUsuario = idUsuario;
-        this.nombreUsuario = nombreUsuario;
+    public Usuario(Integer idusuario, String nombre, String correo, String usuario, String clave, Integer saldo, String token, Boolean validaru) {
+        this.idusuario = idusuario;
+        this.nombre = nombre;
         this.correo = correo;
         this.usuario = usuario;
         this.clave = clave;
         this.saldo = saldo;
-        this.tokenInicio = tokenInicio;
-        this.validarUsuario = validarUsuario;
-        this.tokenRegistro = tokenRegistro;
+        this.token = token;
+        this.validaru = validaru;
     }
 
-    public Integer getIdUsuario() {
-        return idUsuario;
+    
+
+    public Integer getIdusuario() {
+        return idusuario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdusuario(Integer idusuario) {
+        this.idusuario = idusuario;
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getCorreo() {
@@ -143,42 +118,34 @@ public class Usuario implements Serializable {
         this.clave = clave;
     }
 
-    public float getSaldo() {
+    public Integer getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(float saldo) {
+    public void setSaldo(Integer saldo) {
         this.saldo = saldo;
     }
 
-    public String getTokenInicio() {
-        return tokenInicio;
+    public String getToken() {
+        return token;
     }
 
-    public void setTokenInicio(String tokenInicio) {
-        this.tokenInicio = tokenInicio;
+    public void setToken(String token) {
+        this.token = token;
     }
 
-    public boolean getValidarUsuario() {
-        return validarUsuario;
+    public Boolean getValidaru() {
+        return validaru;
     }
 
-    public void setValidarUsuario(boolean validarUsuario) {
-        this.validarUsuario = validarUsuario;
-    }
-
-    public String getTokenRegistro() {
-        return tokenRegistro;
-    }
-
-    public void setTokenRegistro(String tokenRegistro) {
-        this.tokenRegistro = tokenRegistro;
+    public void setValidaru(Boolean validaru) {
+        this.validaru = validaru;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idUsuario != null ? idUsuario.hashCode() : 0);
+        hash += (idusuario != null ? idusuario.hashCode() : 0);
         return hash;
     }
 
@@ -189,7 +156,7 @@ public class Usuario implements Serializable {
             return false;
         }
         Usuario other = (Usuario) object;
-        if ((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario))) {
+        if ((this.idusuario == null && other.idusuario != null) || (this.idusuario != null && !this.idusuario.equals(other.idusuario))) {
             return false;
         }
         return true;
@@ -197,7 +164,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "database.Usuario[ idUsuario=" + idUsuario + " ]";
+        return "database.Usuario[ idusuario=" + idusuario + " ]";
     }
     
 }

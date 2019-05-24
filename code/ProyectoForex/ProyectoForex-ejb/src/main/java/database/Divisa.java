@@ -12,11 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -29,81 +27,68 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Divisa.findAll", query = "SELECT d FROM Divisa d"),
-    @NamedQuery(name = "Divisa.findByIdDivisa", query = "SELECT d FROM Divisa d WHERE d.idDivisa = :idDivisa"),
-    @NamedQuery(name = "Divisa.findByValorBase", query = "SELECT d FROM Divisa d WHERE d.valorBase = :valorBase"),
-    @NamedQuery(name = "Divisa.findByValorRandom", query = "SELECT d FROM Divisa d WHERE d.valorRandom = :valorRandom")})
+    @NamedQuery(name = "Divisa.findByIdivisa", query = "SELECT d FROM Divisa d WHERE d.idivisa = :idivisa"),
+    @NamedQuery(name = "Divisa.findByNombredivisa", query = "SELECT d FROM Divisa d WHERE d.nombredivisa = :nombredivisa"),
+    @NamedQuery(name = "Divisa.findByValorbase", query = "SELECT d FROM Divisa d WHERE d.valorbase = :valorbase"),
+    @NamedQuery(name = "Divisa.findByValorandom", query = "SELECT d FROM Divisa d WHERE d.valorandom = :valorandom")})
 public class Divisa implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idDivisa")
-    private Integer idDivisa;
-    @Basic(optional = false)
-    @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
-    @Column(name = "nombreDivisa")
-    private String nombreDivisa;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "valorBase")
-    private int valorBase;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "valorRandom")
-    private int valorRandom;
+    @Column(name = "idivisa")
+    private Integer idivisa;
+    @Size(max = 2147483647)
+    @Column(name = "nombredivisa")
+    private String nombredivisa;
+    @Column(name = "valorbase")
+    private Integer valorbase;
+    @Column(name = "valorandom")
+    private Integer valorandom;
 
     public Divisa() {
     }
 
-    public Divisa(Integer idDivisa) {
-        this.idDivisa = idDivisa;
+    public Divisa(Integer idivisa) {
+        this.idivisa = idivisa;
     }
 
-    public Divisa(Integer idDivisa, String nombreDivisa, int valorBase, int valorRandom) {
-        this.idDivisa = idDivisa;
-        this.nombreDivisa = nombreDivisa;
-        this.valorBase = valorBase;
-        this.valorRandom = valorRandom;
+    public Integer getIdivisa() {
+        return idivisa;
     }
 
-    public Integer getIdDivisa() {
-        return idDivisa;
+    public void setIdivisa(Integer idivisa) {
+        this.idivisa = idivisa;
     }
 
-    public void setIdDivisa(Integer idDivisa) {
-        this.idDivisa = idDivisa;
+    public String getNombredivisa() {
+        return nombredivisa;
     }
 
-    public String getNombreDivisa() {
-        return nombreDivisa;
+    public void setNombredivisa(String nombredivisa) {
+        this.nombredivisa = nombredivisa;
     }
 
-    public void setNombreDivisa(String nombreDivisa) {
-        this.nombreDivisa = nombreDivisa;
+    public Integer getValorbase() {
+        return valorbase;
     }
 
-    public int getValorBase() {
-        return valorBase;
+    public void setValorbase(Integer valorbase) {
+        this.valorbase = valorbase;
     }
 
-    public void setValorBase(int valorBase) {
-        this.valorBase = valorBase;
+    public Integer getValorandom() {
+        return valorandom;
     }
 
-    public int getValorRandom() {
-        return valorRandom;
-    }
-
-    public void setValorRandom(int valorRandom) {
-        this.valorRandom = valorRandom;
+    public void setValorandom(Integer valorandom) {
+        this.valorandom = valorandom;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idDivisa != null ? idDivisa.hashCode() : 0);
+        hash += (idivisa != null ? idivisa.hashCode() : 0);
         return hash;
     }
 
@@ -114,7 +99,7 @@ public class Divisa implements Serializable {
             return false;
         }
         Divisa other = (Divisa) object;
-        if ((this.idDivisa == null && other.idDivisa != null) || (this.idDivisa != null && !this.idDivisa.equals(other.idDivisa))) {
+        if ((this.idivisa == null && other.idivisa != null) || (this.idivisa != null && !this.idivisa.equals(other.idivisa))) {
             return false;
         }
         return true;
@@ -122,7 +107,7 @@ public class Divisa implements Serializable {
 
     @Override
     public String toString() {
-        return "database.Divisa[ idDivisa=" + idDivisa + " ]";
+        return "database.Divisa[ idivisa=" + idivisa + " ]";
     }
     
 }

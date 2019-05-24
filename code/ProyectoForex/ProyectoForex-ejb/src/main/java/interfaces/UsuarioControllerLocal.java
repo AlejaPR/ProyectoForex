@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import database.Mensaje;
 import database.Usuario;
 import javax.ejb.Local;
 
@@ -15,8 +16,9 @@ import javax.ejb.Local;
 @Local
 public interface UsuarioControllerLocal {
     
-    public void registrarUsuario(Usuario usuario);
-    
-    public void loginUsuario(String usuario, String clave);
+    public String registrarUsuario(Usuario usuario);
+    public String loginUsuario(String usuario, String clave);
+    public Usuario devolverUsuario(String token);
+    public Integer modificarSaldo(String token, Integer saldo); 
     
 }
