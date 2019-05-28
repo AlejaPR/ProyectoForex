@@ -76,29 +76,27 @@
       $("#idformulario").submit(function(event){
 
         $.ajax({
-          //url:'http://localhost:8080/ProyectoTC-web/api/usuario',
-          url:'http://localhost:8080/ProyectoForex-web/api/usuario',
+          url:'http://localhost:8080/ProyectoForex-web/api/usuario/registro',
           dataType: 'json',
           type: 'POST',
           contentType: 'application/json',
           data: JSON.stringify({
-            idUsuario:8,
-                nombreUsuario: $("#inputNombre").val(),
+                nombre: $("#inputNombre").val(),
                 correo: $("#inputCorreo").val(),
                 usuario: $("#inputUsuario").val(),
                 clave: $("#inputClave").val(),
                 saldo:0,
-                tokenInicio:"",
-                validarUsuario:false,
-                tokenRegistro:""
+                token:"",
+                validaru:false
+               
           }),
 
           success: function(data,textStatus,jQxhr){
-            //alert("Registro correcto");
+            //alert(data.mensaje);
             location.href='registroexitoso.html';
           },
           error: function(jqXhr,textStatus,errorThrown){
-            alert(textStatus);
+            alert("Datos incorrectos");
           }
          
         });

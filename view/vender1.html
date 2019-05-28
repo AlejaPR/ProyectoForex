@@ -117,6 +117,13 @@
     $("#wrapper").toggleClass("toggled"); 
  
 });
+
+  var url_string = window.location.href; //
+  var url = new URL(url_string);
+  var d = url.searchParams.get("d1");
+  document.getElementById("campoDivisa1").value = d;
+  var v = url.searchParams.get("v1");
+  document.getElementById("campoValor1").value = v;
   </script>
 
 </body>

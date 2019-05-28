@@ -57,7 +57,7 @@
           <span class="section-heading-lower">COMPRAR</span>
         </h2> 
                      <div class="jumbotron">
-                        <form id="formDivisa1">
+                        <form id="comprarDivisa">
                          
                               <div class="form-group row">
                                   <label for="inputApellido" class="col-sm-2 col-form-label">DIVISA</label>
@@ -79,10 +79,10 @@
                                     <button class="btn btn-info dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                      Seleccione...
                                     </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <a class="dropdown-item" id="ddluncentavo" href="#">0.01</a>
-                                      <a class="dropdown-item" id="ddldiezcentavos" href="#">0.1</a>
-                                      <a class="dropdown-item" id="ddlundolar" href="#">1</a>
+                                    <div class="dropdown-menu" id="ddlLote" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item"  href="#">0.1</a>
+                                      <a class="dropdown-item" href="#">0.5</a>
+                                      <a class="dropdown-item" href="#">1</a>
                                     </div>
                                   </div>
                                   </div>  
@@ -91,7 +91,7 @@
                            
                           <div class="form-group row">
                           <div class="col-sm-12">
-                          <a href="#"  class="btn btn-success">COMPRAR</a>
+                          <a href="operaciones.html"  class="btn btn-success">COMPRAR</a>
                           </div>
                       </div>  
                         
@@ -113,12 +113,54 @@
   
   <script>
    $("#menu-toggle").click(function(e) { 
- 
     e.preventDefault(); 
- 
     $("#wrapper").toggleClass("toggled"); 
- 
-});
+    });
+
+
+  var url1_string = window.location.href; //
+  var url1 = new URL(url1_string);
+  var d1 = url1.searchParams.get("d1");
+  document.getElementById("campoDivisa1").value = d1;
+  var v1 = url1.searchParams.get("v1");
+  document.getElementById("campoValor1").value = v1;
+
+  function comprardivisa(){
+
+    $("#comprarDivisa").submit(function(event){
+
+        $.ajax({
+          url:'http://localhost:8080/ProyectoForex-web/api/usuario/'+document.cookie,
+          headers:{
+              'TokenAuto':document.cookie
+          },
+          dataType: 'json',
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({
+                divisa: $("#campoDivisa1").val(),
+                operacion: "compra",
+                numelegido: $("#campoValor1").val(),
+                numactual: $("#campoValor1").val(),
+                lote:$("#ddlLote option:selected").val(),
+                saldoperacion:0,
+                idusuario:0,
+                validaroperacion:true
+               
+          }),
+
+          success: function(data,textStatus,jQxhr){
+            alert("Operacion almacenada con exito");
+            location.href='operaciones.html';
+          },
+          error: function(jqXhr,textStatus,errorThrown){
+            alert("Datos incorrectos");
+          }
+         
+        });
+         event.preventDefault();
+      });
+  }
   </script>
 
 </body>

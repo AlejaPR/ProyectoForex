@@ -68,24 +68,26 @@
     <script src="js/bootstrap.min.js"></script>
 
    <script type="text/javascript">
+   
+   //Funcion de login 
     $(document).ready(function(){
       $("#idformulario").submit(function(event){
+        var usuario =$("#inputUsuario").val();
+        var clave = $("#inputClave").val() ; 
 
         $.ajax({
-          url:'http://localhost:8080/ProyectoFinal/api/auto',
-          dataType: 'json',
-          type: 'POST',
+          url:'http://localhost:8080/ProyectoForex-web/api/login/'+usuario+'/'+clave+'/',
+          type: 'GET',
           contentType: 'application/json',
-          data: JSON.stringify({
-                usuario: $("#inputUsuario").val(),
-                clave: $("#inputClave").val()
-          }),
             success: function(data,textStatus,jQxhr){
-            alert("Datos correctos");
-            location.href='home.html';
+            document.cookie = data.token;
+            alert(data.token);
+            alert("Datos correctos, bienvenido/a");
+            location.href='miperfil.html';
           },
-         error: function(jqXhr,textStatus,errorThrown){
-            alert(textStatus);
+         error: function(data,jqXhr,textStatus,errorThrown){
+            alert("Datos incorrectos, intente de nuevo");
+            //alert(jqXhr);
           }
         });
          event.preventDefault();
