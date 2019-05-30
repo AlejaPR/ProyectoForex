@@ -6,74 +6,46 @@
 package database;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author aleja
  */
-@Entity
-@Table(name = "operacion")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Operacion.findAll", query = "SELECT o FROM Operacion o"),
-    @NamedQuery(name = "Operacion.findByIdoperacion", query = "SELECT o FROM Operacion o WHERE o.idoperacion = :idoperacion"),
-    @NamedQuery(name = "Operacion.findByDivisa", query = "SELECT o FROM Operacion o WHERE o.divisa = :divisa"),
-    @NamedQuery(name = "Operacion.findByOperacion", query = "SELECT o FROM Operacion o WHERE o.operacion = :operacion"),
-    @NamedQuery(name = "Operacion.findByNumelegido", query = "SELECT o FROM Operacion o WHERE o.numelegido = :numelegido"),
-    @NamedQuery(name = "Operacion.findByNumactual", query = "SELECT o FROM Operacion o WHERE o.numactual = :numactual"),
-    @NamedQuery(name = "Operacion.findByLote", query = "SELECT o FROM Operacion o WHERE o.lote = :lote"),
-    @NamedQuery(name = "Operacion.findBySaldoperacion", query = "SELECT o FROM Operacion o WHERE o.saldoperacion = :saldoperacion"),
-    @NamedQuery(name = "Operacion.findByIdusuario", query = "SELECT o FROM Operacion o WHERE o.idusuario = :idusuario"),
-    @NamedQuery(name = "Operacion.findByValidaroperacion", query = "SELECT o FROM Operacion o WHERE o.validaroperacion = :validaroperacion")})
-public class Operacion implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "idoperacion")
-    private Integer idoperacion;
-    @Size(max = 2147483647)
-    @Column(name = "divisa")
+public class Operacion implements Serializable{
+    
+    private int idoperacion;
     private String divisa;
-    @Size(max = 2147483647)
-    @Column(name = "operacion")
     private String operacion;
-    @Column(name = "numelegido")
-    private Integer numelegido;
-    @Column(name = "numactual")
-    private Integer numactual;
-    @Column(name = "lote")
-    private Integer lote;
-    @Column(name = "saldoperacion")
-    private Integer saldoperacion;
-    @Column(name = "idusuario")
-    private Integer idusuario;
-    @Column(name = "validaroperacion")
-    private Boolean validaroperacion;
-
-    public Operacion() {
+    private int numelegido;
+    private int numactual;
+    private int lote;
+    private int saldoperacion;
+    private int idusuario;
+    private boolean validaroperacion;
+    private String tokenusuario;
+    
+    public Operacion(){
+        
     }
 
-    public Operacion(Integer idoperacion) {
+    public Operacion(int idoperacion, String divisa, String operacion, int numelegido, int numactual, int lote, int saldoperacion, int idusuario, boolean validaroperacion, String tokenusuario) {
         this.idoperacion = idoperacion;
+        this.divisa = divisa;
+        this.operacion = operacion;
+        this.numelegido = numelegido;
+        this.numactual = numactual;
+        this.lote = lote;
+        this.saldoperacion = saldoperacion;
+        this.idusuario = idusuario;
+        this.validaroperacion = validaroperacion;
+        this.tokenusuario = tokenusuario;
     }
 
-    public Integer getIdoperacion() {
+    public int getIdoperacion() {
         return idoperacion;
     }
 
-    public void setIdoperacion(Integer idoperacion) {
+    public void setIdoperacion(int idoperacion) {
         this.idoperacion = idoperacion;
     }
 
@@ -93,77 +65,61 @@ public class Operacion implements Serializable {
         this.operacion = operacion;
     }
 
-    public Integer getNumelegido() {
+    public int getNumelegido() {
         return numelegido;
     }
 
-    public void setNumelegido(Integer numelegido) {
+    public void setNumelegido(int numelegido) {
         this.numelegido = numelegido;
     }
 
-    public Integer getNumactual() {
+    public int getNumactual() {
         return numactual;
     }
 
-    public void setNumactual(Integer numactual) {
+    public void setNumactual(int numactual) {
         this.numactual = numactual;
     }
 
-    public Integer getLote() {
+    public int getLote() {
         return lote;
     }
 
-    public void setLote(Integer lote) {
+    public void setLote(int lote) {
         this.lote = lote;
     }
 
-    public Integer getSaldoperacion() {
+    public int getSaldoperacion() {
         return saldoperacion;
     }
 
-    public void setSaldoperacion(Integer saldoperacion) {
+    public void setSaldoperacion(int saldoperacion) {
         this.saldoperacion = saldoperacion;
     }
 
-    public Integer getIdusuario() {
+    public int getIdusuario() {
         return idusuario;
     }
 
-    public void setIdusuario(Integer idusuario) {
+    public void setIdusuario(int idusuario) {
         this.idusuario = idusuario;
     }
 
-    public Boolean getValidaroperacion() {
+    public boolean isValidaroperacion() {
         return validaroperacion;
     }
 
-    public void setValidaroperacion(Boolean validaroperacion) {
+    public void setValidaroperacion(boolean validaroperacion) {
         this.validaroperacion = validaroperacion;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idoperacion != null ? idoperacion.hashCode() : 0);
-        return hash;
+    public String getTokenusuario() {
+        return tokenusuario;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Operacion)) {
-            return false;
-        }
-        Operacion other = (Operacion) object;
-        if ((this.idoperacion == null && other.idoperacion != null) || (this.idoperacion != null && !this.idoperacion.equals(other.idoperacion))) {
-            return false;
-        }
-        return true;
+    public void setTokenusuario(String tokenusuario) {
+        this.tokenusuario = tokenusuario;
     }
 
-    @Override
-    public String toString() {
-        return "database.Operacion[ idoperacion=" + idoperacion + " ]";
-    }
     
 }
