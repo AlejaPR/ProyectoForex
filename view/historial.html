@@ -61,22 +61,28 @@
                       <div class="form-group row">
                           <label for="inputApellido" class="col-sm-2 col-form-label">Saldo total</label>
                           <div class="col-sm-10">
-                          <input class="form-control" id="campoDivisa1" type="text" placeholder="saldo total" readonly>
+                          <input class="form-control" id="campoSaldoTotal" type="text" placeholder="saldo total" readonly>
                           </div>
                       </div>
                       <div class="form-group row">
                           <label for="inputApellido" class="col-sm-2 col-form-label">Ganancias</label>
                           <div class="col-sm-10">
-                          <input class="form-control" id="campoDivisa1" type="text" placeholder="ganancias" readonly>
+                          <input class="form-control" id="campoGanancias" type="text" placeholder="ganancias" readonly>
                           </div>
                       </div>
                       <div class="form-group row">
                           <label for="inputApellido" class="col-sm-2 col-form-label">Perdidas</label>
                           <div class="col-sm-10">
-                          <input class="form-control" id="campoValor1" type="text" placeholder="perdidas" readonly>
+                          <input class="form-control" id="campoPerdidas" type="text" placeholder="perdidas" readonly>
                           </div>
                       </div>
+              
                     </form>
+                     <div>
+                           <a type="button" href="grafica.html" class="btn btn-danger">VER GRAFICA</a>
+
+                      </div>
+                     
                 </div>  
 
                   <h4>
@@ -84,9 +90,11 @@
                   </h4> 
                 <div class="jumbotron">
                             <div class="container ">
+
   <div class="row" >
     <div class="col" >
 
+       
        <table class="table table-hover" id="tabla" >
         <thead>
            <tr class="table-info">
@@ -132,8 +140,31 @@
 });
   
    $(document).ready(function(){
+      traerSaldo();
       traerhistoral();
     });
+
+    function traerSaldo(){
+
+      $.ajax({
+          url:'http://localhost:8080/ProyectoForex-web/api/saldo/saldoH/'+document.cookie,
+          headers:{
+              'TokenAuto':document.cookie
+          },
+          type: 'GET',
+          contentType: 'application/json',
+          success: function(data,textStatus,jQxhr){
+            document.getElementById('campoSaldoTotal').value = data[0].saldoimaginario;
+            document.getElementById('campoGanancias').value = data[0].ganancias;
+            document.getElementById('campoPerdidas').value = data[0].perdidas;
+           
+            //alert(data.usuario); 
+          },
+          error: function(jqXhr,textStatus,errorThrown){
+            alert(textStatus);
+          }
+        });
+    }
 
      function traerhistoral(){
   
