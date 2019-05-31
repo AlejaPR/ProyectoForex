@@ -104,7 +104,7 @@ public class ConsultasOperacion {
     public void editarValorActual1(Integer valorF){
         try {
              Statement stmtR2 = re.con.createStatement();
-             String sql = "UPDATE operacion SET numactual="+"'"+valorF+"'"+" WHERE divisa='AUD/USD'";
+             String sql = "UPDATE operacion SET numactual="+"'"+valorF+"'"+" WHERE divisa='AUD/USD' AND validaroperacion=true";
              int rstR2 = stmtR2.executeUpdate(sql);
                 stmtR2.close();
                 re.cerrarConexion();
@@ -119,7 +119,7 @@ public class ConsultasOperacion {
     public void editarSaldoActual1(Integer saldo){
         try {
              Statement stmtR2 = re.con.createStatement();
-             String sql = "UPDATE operacion SET saldoperacion="+"'"+saldo+"'"+" WHERE divisa='AUD/USD'";
+             String sql = "UPDATE operacion SET saldoperacion="+"'"+saldo+"'"+" WHERE divisa='AUD/USD' AND validaroperacion=true";
              int rstR2 = stmtR2.executeUpdate(sql);
                 stmtR2.close();
                 re.cerrarConexion();
@@ -134,7 +134,7 @@ public class ConsultasOperacion {
     public void editarValorActual2(Integer valorF){
         try {
              Statement stmtR1 = re.con.createStatement();
-             String sql = "UPDATE operacion SET numactual="+"'"+valorF+"'"+" WHERE divisa='USD/JPY'";
+             String sql = "UPDATE operacion SET numactual="+"'"+valorF+"'"+" WHERE divisa='USD/JPY' AND validaroperacion=true";
              int rstR1 = stmtR1.executeUpdate(sql);
                 stmtR1.close();
                 re.cerrarConexion();
@@ -149,7 +149,7 @@ public class ConsultasOperacion {
     public void editarSaldoActual2(Integer saldo){
         try {
              Statement stmtR2 = re.con.createStatement();
-             String sql = "UPDATE operacion SET saldoperacion="+"'"+saldo+"'"+" WHERE divisa='USD/JPY'";
+             String sql = "UPDATE operacion SET saldoperacion="+"'"+saldo+"'"+" WHERE divisa='USD/JPY' AND validaroperacion=true";
              int rstR2 = stmtR2.executeUpdate(sql);
                 stmtR2.close();
                 re.cerrarConexion();

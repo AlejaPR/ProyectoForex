@@ -91,15 +91,16 @@ public class OperacionController implements OperacionControllerLocal {
        listaOperacion= consulta.traerOperaciones(token);
                 for(Operacion operaciones: listaOperacion){
                     if(operaciones.getDivisa().contains("AUD/USD")){
-                        int valorEntero =(int) Math.floor(Math.random()*(-10-10+1)+10);
+                        if(operaciones.getDivisa().contains("USD/JPY")){
+                            int valorEntero =(int) Math.floor(Math.random()*(-5-5+1)+5);
+                            int valorF = operaciones.getNumactual()+valorEntero;
+                            ConsultasOperacion consultaD= new ConsultasOperacion();
+                            consultaD.editarValorActual2(valorF);
+                        }
+                        int valorEntero =(int) Math.floor(Math.random()*(-5-5+1)+5);
                         int valorF = operaciones.getNumactual()+valorEntero;
                         ConsultasOperacion consultaD= new ConsultasOperacion();
                         consultaD.editarValorActual1(valorF);
-                    }else if(operaciones.getDivisa().contains("USD/JPY")){
-                        int valorEntero =(int) Math.floor(Math.random()*(-10-10+1)+10);
-                        int valorF = operaciones.getNumactual()+valorEntero;
-                        ConsultasOperacion consultaD= new ConsultasOperacion();
-                        consultaD.editarValorActual2(valorF);
                     }
                     return 1;    
                 }
