@@ -25,7 +25,7 @@
         <a href="miperfil.html" class="list-group-item list-group-item-action text-light" style="background-color:#000F1B" >Mi perfil</a>
         <a href="operaciones.html" class="list-group-item list-group-item-action text-light" style="background-color:#000F1B">Mis operaciones</a>
         <a href="historial.html" class="list-group-item list-group-item-action text-light" style="background-color:#000F1B" >Mi historial</a>
-        <a href="#" class="list-group-item list-group-item-action text-light" style="background-color:#000F1B" >Cerrar sesion</a>
+        <a href="cerrada.html" class="list-group-item list-group-item-action text-light" style="background-color:#000F1B" >Cerrar sesion</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -161,7 +161,7 @@
           contentType: 'application/json',
             success: function(data,textStatus,jQxhr){
             alert("Saldo modificado con exito");
-            location.href='miperfil.html';
+            location.href='home.html';
           },
          error: function(data,jqXhr,textStatus,errorThrown){
             alert("Algo fallo");

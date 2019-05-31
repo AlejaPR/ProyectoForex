@@ -25,7 +25,7 @@
         <a href="miperfil.html" class="list-group-item list-group-item-action text-light" style="background-color:#000F1B" >Mi perfil</a>
         <a href="operaciones.html" class="list-group-item list-group-item-action text-light" style="background-color:#000F1B">Mis operaciones</a>
         <a href="historial.html" class="list-group-item list-group-item-action text-light" style="background-color:#000F1B" >Mi historial</a>
-        <a href="#" class="list-group-item list-group-item-action text-light" style="background-color:#000F1B" >Cerrar sesion</a>
+        <a href="cerrada.html" class="list-group-item list-group-item-action text-light" style="background-color:#000F1B" >Cerrar sesion</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -138,7 +138,7 @@
 
     });
 
-    setInterval('traeroperaciones()',3000); 
+    setInterval('traeroperaciones()',2000); 
 
     function traeroperaciones(){
      
@@ -161,7 +161,8 @@
               
               if(data.length==0){
                 var nuevaFila = tabla.tBodies[0].insertRow(tabla.tBodies[0].rows.length);
-                tabla.tBodies[0].rows[tabla.tBodies[0].rows.length - 1].insertCell(0).innerHTML ="Aun no hay nada que mostrar" ;
+                tabla.tBodies[0].rows[tabla.tBodies[0].rows.length - 1].insertCell(0).innerHTML ="" ;
+               
               }
              for (var i = 0; i <data.length; i++) {
                 var nuevaFila = tabla.tBodies[0].insertRow(tabla.tBodies[0].rows.length);
@@ -278,9 +279,7 @@
             alert("Datos incorrectos");
           }
         });
-        
-      }
-
+    }
   </script>
 
 </body>
