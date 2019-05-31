@@ -14,17 +14,18 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.ejb.Stateless;
 import javax.xml.bind.DatatypeConverter;
 import org.apache.commons.codec.digest.DigestUtils;
-
 /**
  *
- * @author aleja
+ * @author Alejandra Pabon Rodriguez
+ * 461 215 234 
+ * Clase seguridad que genera token con jwt 
  */
-
 public class Seguridad {
     
     private static long tiempo = System.currentTimeMillis();
     private static long expiraToken = TimeUnit.MINUTES.toMillis(7200);
    
+    /**metodo que genera el token**/
     public static String generarToken(String usuario, String clave){
 
         ConsultasUsuario consulta = new ConsultasUsuario();
@@ -47,6 +48,7 @@ public class Seguridad {
         
         }
     
+    /**metodo que desencripta el token**/
     public static String desencriptar(String token){
         Jws parseClaimJws = Jwts.parser().setSigningKey("A4J7A3prcc20").parseClaimsJws(token);
         System.out.println("Header   "+parseClaimJws.getHeader());
@@ -57,5 +59,4 @@ public class Seguridad {
         
         return tokencito;  
     }
-
 }

@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
-
 import database.Divisa;
 import database.Usuario;
 import database.consultas.ConsultasDivisa;
@@ -14,14 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import seguridad.Seguridad;
-
 /**
  *
- * @author aleja
+ * @author Alejandra Pabon Rodriguez
+ * 461 215 234 
+ * Clase bean controler de divisa
  */
 @Stateless
 public class DivisaController implements DivisaControllerLocal {
 
+    /**Metodo que trae la divisa uno a home**/
     @Override
     public List<Divisa> traerDivisa1(String token) {
        String correoUsua= Seguridad.desencriptar(token);
@@ -33,7 +29,7 @@ public class DivisaController implements DivisaControllerLocal {
        listaDivisa= consulta.traerNombreDivisa1(token);     
         return listaDivisa;
         }
-    
+    /**Metodo que trae la divisa dos a home**/
     @Override
     public List<Divisa> traerDivisa2(String token) {
        String correoUsua= Seguridad.desencriptar(token);
@@ -46,6 +42,7 @@ public class DivisaController implements DivisaControllerLocal {
         return listaDivisa;
     }
     
+    /**Metodo que cambiar el random de la divisa uno**/
     @Override
     public Integer cambiarDivisa1(String token) {
        String correoUsua= Seguridad.desencriptar(token);
@@ -63,7 +60,6 @@ public class DivisaController implements DivisaControllerLocal {
                     System.out.println("ValorF "+valorF);
                     ConsultasDivisa consultaD= new ConsultasDivisa();
                     consultaD.editarValorDivisa1(valorF);
-
                     return 1;
                 }     
             }
@@ -71,6 +67,7 @@ public class DivisaController implements DivisaControllerLocal {
          return null;
     }
 
+    /**Metodo que cambia el random de la divisa dos**/
     @Override
     public Integer cambiarDivisa2(String token) {
        String correoUsua= Seguridad.desencriptar(token);
@@ -88,16 +85,12 @@ public class DivisaController implements DivisaControllerLocal {
                     System.out.println("ValorF "+valorF);
                     ConsultasDivisa consultaD= new ConsultasDivisa();
                     consultaD.editarValorDivisa2(valorF);
-
                     return 1;
                 }     
             }
         }  
          return null;
     }
-
-    
-       
 }
         
 

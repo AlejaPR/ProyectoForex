@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package database;
-
 /**
  *
- * @author aleja
+ * @author Alejandra Pabon Rodriguez
+ * 461 215 234 
+ * Clase database contiene el pojo mensaje
  */
 public class Mensaje {
-    
     private String mensajes;
 
     public Mensaje(String mensajes) {
@@ -27,7 +22,5 @@ public class Mensaje {
 
     public void setMensajes(String mensajes) {
         this.mensajes = mensajes;
-    }
-    
-    
+    } 
 }

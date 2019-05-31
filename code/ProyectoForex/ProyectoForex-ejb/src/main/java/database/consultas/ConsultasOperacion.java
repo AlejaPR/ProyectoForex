@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package database.consultas;
-
 import database.Operacion;
 import database.Usuario;
 import database.consultas.Conexion;
@@ -15,10 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 /**
  *
- * @author aleja
+ * @author Alejandra Pabon Rodriguez
+ * 461 215 234 
+ * Clase que contiene todas las consultas de base de datos tabla operacion
  */
 public class ConsultasOperacion {
     
@@ -31,6 +26,7 @@ public class ConsultasOperacion {
     
     List<Operacion> listaOperacion = new ArrayList<>();
     
+    /**consulta que registra las operaciones**/
     public void registrarOperacion(Operacion operacion){
          try{
                 Statement stmto = re.con.createStatement();
@@ -51,6 +47,7 @@ public class ConsultasOperacion {
         
     }
     
+    /**consulta que trae todas las operaciones activas**/
     public List<Operacion> traerOperaciones(String token){
         
         try {
@@ -67,9 +64,7 @@ public class ConsultasOperacion {
                    operaciones.setLote(rst.getInt("lote"));
                    operaciones.setSaldoperacion(rst.getInt("saldoperacion"));
                    operaciones.setValidaroperacion(rst.getBoolean("validaroperacion"));
-                   operaciones.setTokenusuario(rst.getString("tokenusuario"));
-                   
-                   
+                   operaciones.setTokenusuario(rst.getString("tokenusuario"));  
                     listaOperacion.add(operaciones);
              }   
                 rst.close();
@@ -84,6 +79,7 @@ public class ConsultasOperacion {
         return null;
     }
     
+    /**consulta que edita las operaciones cuando cierran cambia validar a false**/
     public void editarValidar(Integer idoperacion) {
         try {
             Statement stmts = re.con.createStatement();
@@ -101,6 +97,7 @@ public class ConsultasOperacion {
         }
     }
     
+    /**consulta que edita el valor de la divisa uno en la tabla**/
     public void editarValorActual1(Integer valorF){
         try {
              Statement stmtR2 = re.con.createStatement();
@@ -116,6 +113,8 @@ public class ConsultasOperacion {
         }
        
     }
+    
+    /**consulta que cambia el saldo actual de la divisa uno**/
     public void editarSaldoActual1(Integer saldo){
         try {
              Statement stmtR2 = re.con.createStatement();
@@ -131,6 +130,8 @@ public class ConsultasOperacion {
         }
        
     }
+    
+    /**consulta que edita el valor de la divisa dos en la tabla **/
     public void editarValorActual2(Integer valorF){
         try {
              Statement stmtR1 = re.con.createStatement();
@@ -146,6 +147,8 @@ public class ConsultasOperacion {
         }
        
     }
+    
+    /**consulta que edita el saldo de la divisa dos**/
     public void editarSaldoActual2(Integer saldo){
         try {
              Statement stmtR2 = re.con.createStatement();
@@ -161,6 +164,8 @@ public class ConsultasOperacion {
         }
        
     }
+    
+    /**consulta que trae las operaciones de historial**/
     public List<Operacion> traerHistorial(String token){
         
         try {
@@ -178,8 +183,6 @@ public class ConsultasOperacion {
                    operaciones.setSaldoperacion(rst.getInt("saldoperacion"));
                    operaciones.setValidaroperacion(rst.getBoolean("validaroperacion"));
                    operaciones.setTokenusuario(rst.getString("tokenusuario"));
-                   
-                   
                     listaOperacion.add(operaciones);
              }   
                 rst.close();

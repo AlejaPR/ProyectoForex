@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service;
-
 import database.Divisa;
 import interfaces.DivisaControllerLocal;
 import java.util.ArrayList;
@@ -16,18 +10,21 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
 /**
  *
- * @author aleja
+ * @author Alejandra Pabon Rodriguez
+ * 461 215 234 
+ * Clase divisa servicio
  */
 @javax.enterprise.context.RequestScoped
 @Path("divisa")
 public class DivisaService {
     
+    /**Llamado del bean de divisa**/
     @EJB 
     DivisaControllerLocal beanDivisa;
     
+    /**servicio que cambia la divisa uno**/
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/divisa1/valor/{token}")
@@ -36,7 +33,6 @@ public class DivisaService {
             System.out.println(token);
             Divisa d = new Divisa();
             d.setValorandom(beanDivisa.cambiarDivisa1(token));
-            
             if(d.getValorandom().equals(1)){
                 return Response.status(Response.Status.OK).entity(beanDivisa.traerDivisa1(token)).build();
             }else{
@@ -44,10 +40,10 @@ public class DivisaService {
             }
         }catch(Exception e){
             return Response.status(Response.Status.BAD_REQUEST).build();
-           
         }  
     }
     
+    /**servicio que cambia la divisa dos**/
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/divisa2/valor/{token}")

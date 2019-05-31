@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service;
 import database.Mensaje;
 import database.Usuario;
@@ -18,19 +13,21 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
 /**
  *
- * @author aleja
+ * @author Alejandra Pabon Rodriguez
+ * 461 215 234 
+ * Clase servicio del login
  */
 @javax.enterprise.context.RequestScoped
 @Path("login")
 public class Login {
     
+    /**Llado del bean usuario**/
     @EJB 
     UsuarioControllerLocal beanLogin;
     
-    
+    /**servicio login**/
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{usuario}/{clave}")
@@ -47,8 +44,6 @@ public class Login {
             }
         } catch (Exception e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
-        }
-           
+        }       
     }
-    
 }

@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package database.consultas;
-
 import database.Divisa;
 import database.Usuario;
 import java.sql.ResultSet;
@@ -12,10 +6,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  *
- * @author aleja
+ * @author Alejandra Pabon Rodriguez
+ * 461 215 234 
+ * Clase consultas divisa contiene todas las consultas de base de datos a la tabla divisa
  */
 public class ConsultasDivisa {
     
@@ -28,6 +23,7 @@ public class ConsultasDivisa {
     
     List<Divisa> listaDivisa = new ArrayList<>();
     
+    /**consulta para traer la divisa 1**/
     public List<Divisa> traerNombreDivisa1(String token){
         Divisa divisas = new Divisa();
         try {
@@ -51,6 +47,7 @@ public class ConsultasDivisa {
         }
         return listaDivisa;
     }
+    /**consulta que trae la divisa 2**/
     public List<Divisa> traerNombreDivisa2(String token){
         Divisa divisas = new Divisa();
         try {
@@ -74,6 +71,8 @@ public class ConsultasDivisa {
         }
         return listaDivisa;
     }
+    
+    /**consulta que cambia el valor de la divisa uno**/
     public void editarValorDivisa1(Integer valorF){
         Divisa divisas = new Divisa();
         try {
@@ -91,6 +90,7 @@ public class ConsultasDivisa {
        
     }
     
+    /**consulta que cambia el valor de la divisa dos**/
     public void editarValorDivisa2(Integer valorF){
         Divisa divisas = new Divisa();
         try {

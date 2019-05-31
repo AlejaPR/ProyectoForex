@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service;
-
 import database.Mensaje;
 import database.Saldo;
 import database.Usuario;
@@ -23,18 +17,21 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
 /**
  *
- * @author aleja
+ * @author Alejandra Pabon Rodriguez
+ * 461 215 234 
+ * Clase servicio de saldo
  */
 @javax.enterprise.context.RequestScoped
 @Path("saldo")
 public class SaldoService {
     
+    /**Llamado del bean de usuario**/
     @EJB 
     UsuarioControllerLocal beanSaldo;
     
+    /**servicio que modifica el saldo del usuario en el perfil**/
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{token}/{saldo}")
@@ -54,8 +51,11 @@ public class SaldoService {
         }  
     }
 
+    /**llamado del bean de saldo**/
     @EJB 
     SaldoControllerLocal beanSaldoI;
+    
+    /**servicio que trae el saldo del historial**/
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/saldoH/{token}")
@@ -70,6 +70,8 @@ public class SaldoService {
            
         }  
     }
+    
+    /**servicio que trae el saldo de las operaciones en true**/
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -85,8 +87,5 @@ public class SaldoService {
            
         }  
     }
-    
-   
-
 }
     

@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
-
 import database.Divisa;
 import database.Operacion;
 import database.Usuario;
@@ -18,14 +12,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import seguridad.Seguridad;
-
 /**
  *
- * @author aleja
+ * @author Alejandra Pabon Rodriguez
+ * 461 215 234 
+ * Clase bean controler de operacion
  */
 @Stateless
 public class OperacionController implements OperacionControllerLocal {
 
+    /**metodo que registra las operaciones**/
     @Override
     public String registrarOperacion(Operacion operacion) {
         try {
@@ -38,6 +34,7 @@ public class OperacionController implements OperacionControllerLocal {
         return "falló";
     }
 
+    /**Metodo que trae todoas las operaciones**/
     @Override
     public List<Operacion> traerOperaciones(String token) {
        String correoUsua= Seguridad.desencriptar(token);
@@ -50,7 +47,7 @@ public class OperacionController implements OperacionControllerLocal {
         return listaOperacion;
     }
 
-    
+    /**metdo que cierra las operaciones y cambia el validar a false**/
     @Override
     public boolean cerrarOperacion(Integer idoperacion, String token) {
        Usuario usuario = new Usuario();
@@ -72,6 +69,7 @@ public class OperacionController implements OperacionControllerLocal {
      return false;
     }
 
+    /**metodo que trae las operaciones del historial**/
     @Override
     public List<Operacion> traerHistorial(String token) {
        String correoUsua= Seguridad.desencriptar(token);
@@ -84,30 +82,30 @@ public class OperacionController implements OperacionControllerLocal {
         return listaOperacion;
     }
  
+    /**metodo que cambiar los valores de las divisas en la tabla de operaciones**/
     @Override
     public Integer cambiarValorActual(String token) {
        ConsultasOperacion consulta = new ConsultasOperacion();
        List<Operacion> listaOperacion = new ArrayList();
        listaOperacion= consulta.traerOperaciones(token);
                 for(Operacion operaciones: listaOperacion){
-                    if(operaciones.getDivisa().contains("AUD/USD")){
-                        if(operaciones.getDivisa().contains("USD/JPY")){
-                            int valorEntero =(int) Math.floor(Math.random()*(-5-5+1)+5);
-                            int valorF = operaciones.getNumactual()+valorEntero;
-                            ConsultasOperacion consultaD= new ConsultasOperacion();
-                            consultaD.editarValorActual2(valorF);
-                        }
-                        int valorEntero =(int) Math.floor(Math.random()*(-5-5+1)+5);
-                        int valorF = operaciones.getNumactual()+valorEntero;
+                    if(operaciones.getDivisa().equals("AUD/USD")){
+                        int valorEntero =(int) Math.floor(Math.random()*(-4-4+1)+4);
+                        int valorF = valorEntero+operaciones.getNumactual();
                         ConsultasOperacion consultaD= new ConsultasOperacion();
-                        consultaD.editarValorActual1(valorF);
+                        consultaD.editarValorActual1(valorF); 
+                    }if(operaciones.getDivisa().equals("USD/JPY")){
+                        int valorEntero =(int) Math.floor(Math.random()*(-4-4+1)+4);
+                        int valorF = operaciones.getNumactual()+valorEntero;
+                        ConsultasOperacion consultau= new ConsultasOperacion();
+                        consultau.editarValorActual2(valorF);      
                     }
                     return 1;    
                 }
        return 0;   
     }
 
-
+    /**metodo que cambia los saldos de las operaciones**/
     @Override
     public Integer cambiarSaldo(String token) {
         ConsultasOperacion consulta = new ConsultasOperacion();
@@ -119,34 +117,30 @@ public class OperacionController implements OperacionControllerLocal {
                             int lote =operaciones.getLote();
                             int diferencia = (operaciones.getNumactual()-operaciones.getNumelegido());
                             int saldoOp = lote * diferencia;   
-                            consultaD.editarSaldoActual1(saldoOp);
-                           
+                            consultaD.editarSaldoActual1(saldoOp);   
                     }else if(operaciones.getDivisa().equals("AUD/USD") && operaciones.getOperacion().equals("vender")){
                             ConsultasOperacion consultaD= new ConsultasOperacion();
                             int lote =operaciones.getLote();
                             int diferencia = (operaciones.getNumelegido()-operaciones.getNumactual());
                             int saldoOp = lote * diferencia;   
-                            consultaD.editarSaldoActual1(saldoOp);
-                           
+                            consultaD.editarSaldoActual1(saldoOp); 
                       }else if(operaciones.getDivisa().equals("USD/JPY") && operaciones.getOperacion().equals("compra")){
                             ConsultasOperacion consultaD= new ConsultasOperacion();
                             int lote =operaciones.getLote();
                             int diferencia = (operaciones.getNumactual()-operaciones.getNumelegido());
                             int saldoOp = lote * diferencia;   
                             consultaD.editarSaldoActual2(saldoOp);
-                          
                         }else if(operaciones.getDivisa().equals("USD/JPY") && operaciones.getOperacion().equals("vender")){
                             ConsultasOperacion consultaD= new ConsultasOperacion();
                             int lote =operaciones.getLote();
                             int diferencia = (operaciones.getNumelegido()-operaciones.getNumactual());
                             int saldoOp = lote * diferencia;   
                             consultaD.editarSaldoActual2(saldoOp);
-                           
                         }
                     return 1;  
                     }
                      
                      return 0;   
-                }
-      
     }
+      
+}

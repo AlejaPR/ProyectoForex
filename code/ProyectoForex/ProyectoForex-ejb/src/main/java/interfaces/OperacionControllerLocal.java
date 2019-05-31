@@ -2,10 +2,11 @@ package interfaces;
 import database.Operacion;
 import java.util.List;
 import javax.ejb.Local;
-
 /**
  *
- * @author aleja
+ * @author Alejandra Pabon Rodriguez
+ * 461 215 234 
+ * Interface del bean operacion
  */
 @Local
 public interface OperacionControllerLocal {

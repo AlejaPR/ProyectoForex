@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package database.consultas;
-
 import database.Saldo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 /**
  *
- * @author aleja
+ * @author Alejandra Pabon Rodriguez
+ * 461 215 234 
+ * Clase que trae las consultas de saldo 
  */
 public class ConsultasSaldo {
     
@@ -29,6 +24,7 @@ public class ConsultasSaldo {
     
     List<Saldo> listaSaldo = new ArrayList<>();
     
+    /**consulta que trae el saldo actual del usuario**/
     public List<Saldo> traerSaldo(String token){
         try {
              Statement stmtt = re.con.createStatement();
@@ -55,6 +51,7 @@ public class ConsultasSaldo {
         return null;
     }
     
+    /**consulta que edita el saldo imaginario**/
     public void editarSaldo(Integer saldo){
         
         try {
@@ -73,6 +70,7 @@ public class ConsultasSaldo {
         }
     }
     
+    /**consulta que edita las ganancias**/
     public void editarGanancias(Integer ganancias){
         try {
             Statement stmtg = re.con.createStatement();
@@ -90,6 +88,7 @@ public class ConsultasSaldo {
         }
     }
     
+    /**consulta que edita las perdidas**/
      public void editarPerdidas(Integer perdidas){
         try {
             Statement stmtp = re.con.createStatement();

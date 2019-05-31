@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service;
-
 import database.Mensaje;
 import database.Operacion;
 import interfaces.OperacionControllerLocal;
@@ -19,18 +13,21 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
 /**
  *
- * @author aleja
+ * @author Alejandra Pabon Rodriguez
+ * 461 215 234 
+ * Clase servicio de operacion
  */
 @javax.enterprise.context.RequestScoped
 @Path("operacion")
 public class OperacionService {
     
+    /**Llamado del bean de operacion**/
     @EJB
     OperacionControllerLocal beanOperacion;
     
+    /**servicio post que registra la operacion**/
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -53,9 +50,8 @@ public class OperacionService {
         } catch (Exception e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(operacion).build();
         }     
-    
     }
-    
+    /**servicio get que trae todas las operaciones**/
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/operaciones/{token}")
@@ -68,6 +64,7 @@ public class OperacionService {
         }  
     }
     
+    /**servicio get que cierra las operaciones**/
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{idoperacion}/{token}")
@@ -88,6 +85,7 @@ public class OperacionService {
         }  
     }
     
+    /**servicio get que trae las operacones de historial**/
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/historial/{token}")
@@ -106,12 +104,13 @@ public class OperacionService {
         }  
     }
     
+    /**servicio que cambia las divisa en la tabla operaciones**/
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/cambiar/{token}")
     public Response cambiarDivisa(@PathParam("token") String token){
         try{
-                
+                System.out.println("cambiar");
                 return Response.status(Response.Status.OK).entity(beanOperacion.cambiarValorActual(token)).build(); 
         }catch(Exception e){
             return Response.status(Response.Status.BAD_REQUEST).build();
@@ -119,6 +118,7 @@ public class OperacionService {
         }  
     }
     
+    /**servicio que cambia el saldo en la tabla operaciones**/
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/saldo/{token}")
@@ -133,6 +133,4 @@ public class OperacionService {
            
         }  
     }
-    
-    
 }

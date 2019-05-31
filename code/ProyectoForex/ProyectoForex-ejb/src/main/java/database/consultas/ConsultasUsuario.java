@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package database.consultas;
-
 import database.Usuario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 /**
  *
- * @author aleja
+ * @author Alejandra Pabon Rodriguez
+ * 461 215 234 
+ * Clase que trae las consultas de la tabla usuario
  */
 public class ConsultasUsuario {
     
@@ -29,6 +24,7 @@ public class ConsultasUsuario {
     
     List<Usuario> listaPersona = new ArrayList<>();
     
+    /**consulta que trae todos los usuario**/
     public List<Usuario> traerusuarios(){
         Usuario usuarios = new Usuario();
         try {
@@ -57,6 +53,7 @@ public class ConsultasUsuario {
         return listaPersona;
     }
     
+    /**consulta que verifica si el usuario y la clave existen para login**/
     public List<Usuario> usuarioLogin(String usuario, String clave){
         Usuario usuarios = new Usuario();
         try {
@@ -85,6 +82,7 @@ public class ConsultasUsuario {
         return listaPersona;
     }
     
+    /**consulta que trae el token del usuario**/
     public List<Usuario> usuarioToken(String token){
         Usuario usuarios = new Usuario();
         try {
@@ -112,10 +110,8 @@ public class ConsultasUsuario {
         }
         return listaPersona;
     }
-    /**
-     * Funcion que registra una persona en base de datos
-     * @param usuario 
-     */
+    
+    /**consulta que registra usuario**/
     public void registrarPersona(Usuario usuario){
          try{
                 Statement stmt = re.con.createStatement();
@@ -135,6 +131,7 @@ public class ConsultasUsuario {
          }
     }
     
+    /**consulta que edita el token del usuario**/
     public void editar(Usuario usuario, String tokenN) {
         try {
             Statement stmta = re.con.createStatement();
@@ -153,6 +150,7 @@ public class ConsultasUsuario {
         }
     }
     
+    /**consulta que edita el saldo de la persona en el perfil**/
     public void editarSaldo(String usuario, Integer saldo) {
         try {
             Statement stmts = re.con.createStatement();
@@ -169,4 +167,24 @@ public class ConsultasUsuario {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    /**consulta que edita el token cuando cierra sesion **/
+     public void editarToken(String usuario, String tokenN) {
+        try {
+            Statement stmtto = re.con.createStatement();
+            String sql= "UPDATE public.usuario SET token=0 WHERE usuario="+"'"+usuario+"'"+"";
+            System.out.println(sql);
+                int rsto = stmtto.executeUpdate(sql);
+                System.out.println("Correcto");
+               
+                stmtto.close();
+                re.cerrarConexion();
+        } catch (SQLException ex) {
+               System.out.println("fallo updatetoken"+ex);
+
+        } catch (Exception ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }

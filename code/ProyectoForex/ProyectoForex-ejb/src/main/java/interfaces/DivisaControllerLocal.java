@@ -1,17 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfaces;
-
 import database.Divisa;
 import java.util.List;
 import javax.ejb.Local;
-
 /**
  *
- * @author aleja
+ * @author Alejandra Pabon Rodriguez
+ * 461 215 234 
+ * Interface del bean divisa
  */
 @Local
 public interface DivisaControllerLocal {

@@ -13,35 +13,35 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
 import seguridad.Seguridad;
-
 /**
  *
- * @author aleja
+ * @author Alejandra Pabon Rodriguez
+ * 461 215 234 
+ * Clase bean controler de usuario
  */
 @Stateless
 public class UsuarioController implements UsuarioControllerLocal {
     
+    /**metodo que registra usuarios**/
     @Override
-    public String registrarUsuario(Usuario usuario) {
-        
+    public String registrarUsuario(Usuario usuario) {       
         try {
              ConsultasUsuario registro =new ConsultasUsuario();
              registro.registrarPersona(usuario);
-             
              return "";
         } catch (Exception ex) {
             System.out.println("SALIO ALGO MAL"+ex.getMessage());
         }
-        
         return "falló";
     }
     
-    
+    /**metodo que edita el token de usuario en el login**/
     public static void editarToken(Usuario usuario,String token) {
         ConsultasUsuario consulta = new ConsultasUsuario();
         consulta.editar(usuario, token);
     }
     
+    /**metodo login de usuario que crea el token del usuario si los datos son correcto**/
     @Override
     public String loginUsuario(String usuario, String clave) {
         try {
@@ -58,13 +58,13 @@ public class UsuarioController implements UsuarioControllerLocal {
                       System.out.println("Error");
                       return "";
                   }
-              
             } 
         } catch (Exception e) {
         }
         return "";
     }
 
+    /**metodo que devuelve los datos del usuario para el perfil**/
     @Override
     public Usuario devolverUsuario(String token) {
        String correoUsua= Seguridad.desencriptar(token);
@@ -80,6 +80,7 @@ public class UsuarioController implements UsuarioControllerLocal {
         return null;
     }
 
+    /**metodo que modifica el saldo del usuario**/
     @Override
     public Integer modificarSaldo(String token, Integer saldo) {
        Usuario usuario = new Usuario();
@@ -100,10 +101,23 @@ public class UsuarioController implements UsuarioControllerLocal {
        }
      return null;
     }
-    
 
-    
-
-   
+    /**metodo de cerrar sesion cambia el token a 0**/
+    @Override
+    public Integer cerrarSesion(String token) {
+       Usuario usuario = new Usuario();
+       String correoUsua= Seguridad.desencriptar(token);
+       ConsultasUsuario consulta = new ConsultasUsuario();
+       List<Usuario> listaUsuario = new ArrayList();
+       listaUsuario= consulta.usuarioToken(token);
+       for (Usuario usuarios : listaUsuario) {
+            if(usuarios.getToken().equals(token)){ 
+                ConsultasUsuario consultau = new ConsultasUsuario();
+                 consultau.editarToken(usuarios.getUsuario(), token);
+             }
+        return 1;
+        }
+       return 0;
+    }
 }
 

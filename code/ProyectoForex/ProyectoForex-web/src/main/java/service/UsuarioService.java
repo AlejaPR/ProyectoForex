@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service;
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import database.Mensaje;
@@ -19,19 +14,21 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
 /**
  *
- * @author aleja
+ * @author Alejandra Pabon Rodriguez
+ * 461 215 234 
+ * Clase servicio de usuario
  */
 @javax.enterprise.context.RequestScoped
 @Path("usuario")
 public class UsuarioService {
     
+    /**Llamado del bean de usuario**/
     @EJB 
     UsuarioControllerLocal beanPrueba;
    
-    
+    /**servicio que agrega usuario**/
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -56,6 +53,7 @@ public class UsuarioService {
         }     
     }
     
+    /**servicio que devuelve los datos del usuario**/
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{token}")
@@ -65,6 +63,26 @@ public class UsuarioService {
             Usuario u =beanPrueba.devolverUsuario(token);
             System.out.println(u.getNombre());
             return Response.status(Response.Status.OK).entity(u).build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }     
+    }
+    
+    /**servicio que cierra sesion**/
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/cerrar/{token}")
+    public Response cerrarSesion(@PathParam("token") String token){
+        try {
+            System.out.println(token);
+            int u =beanPrueba.cerrarSesion(token);
+            
+            if(u==1){
+                return Response.status(Response.Status.OK).entity(u).build();
+            }else{
+                return Response.status(Response.Status.BAD_REQUEST).entity(u).build();
+            }
+            
         } catch (Exception e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }     
